@@ -11,23 +11,25 @@ export function render(element, container) {
 
 /**
  * 创建DOM
- * @param {*} fiber fiber节点
+ * @param {*} element element节点
  * @returns dom 真实dom节点
  */
-function createDom(fiber) {
+function createDom(element) {
   // 处理文本节点和标签节点
   const dom =
     element.type === "TEXT_ELEMENT"
       ? document.createTextNode("")
-      : document.createElement(fiber.type);
+      : document.createElement(element.type);
 
   // 为节点绑定属性
   const isProperty = (key) => key !== "children";
 
-  Object.keys(fiber.props)
+  Object.keys(element.props)
     .filter(isProperty)
     .forEach((name) => {
-      dom[name] = fiber.props[name];
+      dom[name] = element.props[name];
     });
+  // 处理孩子节点
+  element.props.children.forEach((child) => render(child, dom));
   return dom;
 }
