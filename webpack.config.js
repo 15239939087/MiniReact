@@ -14,7 +14,13 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-react-jsx"],
+          },
+        },
       },
     ],
   },
@@ -25,7 +31,7 @@ module.exports = {
     }),
     // 指定HTML模板, 插件会将构建好的js文件自动插入到HTML文件中
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: path.join(__dirname, "src/index.html"),
     }),
   ],
   devServer: {

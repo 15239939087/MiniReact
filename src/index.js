@@ -1,1 +1,9 @@
-console.log(123);
+import React from "./MiniReact";
+
+const element = (
+  <div id="foo">
+    <button>bar</button>
+  </div>
+);
+
+React.render(element, document.getElementById("root"));
