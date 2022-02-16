@@ -5,6 +5,9 @@
  */
 export function render(element, container) {
   const dom = createDom(element);
+
+  // 使用递归 处理孩子节点
+  element.props.children.forEach((child) => render(child, dom));
   // 添加到容器
   container.appendChild(dom);
 }
@@ -29,7 +32,7 @@ function createDom(element) {
     .forEach((name) => {
       dom[name] = element.props[name];
     });
-  // 处理孩子节点
-  element.props.children.forEach((child) => render(child, dom));
+
+  console.log(dom);
   return dom;
 }
