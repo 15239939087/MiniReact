@@ -6,6 +6,7 @@
  * @returns 虚拟DOM结构
  */
 export function createElement(type, props, ...children) {
+  console.log(type);
   return {
     type,
     props: {
