@@ -27,6 +27,8 @@ function createDom(fiber) {
       ? document.createTextNode("")
       : document.createElement(fiber.type);
   const isProperty = (key) => key !== "children";
+
+  // 遍历挂载属性
   Object.keys(fiber.props)
     .filter(isProperty)
     .forEach((name) => {
