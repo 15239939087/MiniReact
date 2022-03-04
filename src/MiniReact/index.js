@@ -1,6 +1,6 @@
 import { createElement } from "./createElement";
 import { render } from "./react-dom";
-
-const React = { createElement, render };
+import { Component } from "./Component";
+const React = { createElement, render, Component };
 
 export default React;

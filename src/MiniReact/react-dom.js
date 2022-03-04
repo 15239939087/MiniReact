@@ -264,14 +264,25 @@ function updateFunctionComponent(fiber) {
 }
 
 /**
+ * 类组件处理
+ * @param {*} fiber
+ */
+function updateClassComponent(fiber) {
+  const { type, props } = fiber;
+  const children = [new type(props).render()];
+  reconcileChildren(fiber, children);
+}
+
+/**
  * 处理工作单元，返回下一个工作单元
  * @param {*} fiber
  */
 function performUnitOfWork(fiber) {
-  // 判断是否为函数
-  const isFunctionComponent = fiber.type instanceof Function;
-  if (isFunctionComponent) {
-    updateFunctionComponent(fiber);
+  // 函数组件类组件处理
+  if (fiber.type && typeof fiber.type === "function") {
+    fiber.type.prototype.isReactComponent
+      ? updateClassComponent(fiber)
+      : updateFunctionComponent(fiber);
   } else {
     // 更新普通节点
     updateHostComponent(fiber);

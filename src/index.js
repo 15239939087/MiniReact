@@ -1,10 +1,17 @@
 import React from "./MiniReact";
 
-function App(props) {
-  return <h1>H1,{props.name}!</h1>;
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>我是</h1>
+        <h2>class组件</h2>
+      </div>
+    );
+  }
 }
 
-const element = <App name="我是大王派来测试的小demo" />;
+const element = <App />;
 
 console.log(element);
 
